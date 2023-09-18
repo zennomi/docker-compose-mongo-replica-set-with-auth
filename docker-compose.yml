@@ -4,9 +4,19 @@ services:
   mongo1:
     image: mongo:5
     container_name: mongo1
-    command: ["--replSet", "my-replica-set", "--bind_ip_all", "--port", "30001"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        # "--keyFile", # uncomment this line
+      # "/data/key", # uncomment this line
+        "--replSet",
+        "my-replica-set",
+        "--bind_ip_all",
+        "--port",
+        "30001"
+      ]
     volumes:
-      - ./data/mongo-1:/data/db
+      - ./data/key:/data/key
     ports:
       - 30001:30001
     healthcheck:
@@ -17,17 +27,37 @@ services:
   mongo2:
     image: mongo:5
     container_name: mongo2
-    command: ["--replSet", "my-replica-set", "--bind_ip_all", "--port", "30002"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        # "--keyFile", # uncomment this line
+      # "/data/key", # uncomment this line
+        "--replSet",
+        "my-replica-set",
+        "--bind_ip_all",
+        "--port",
+        "30002"
+      ]
     volumes:
-      - ./data/mongo-2:/data/db
+      - ./data/key:/data/key
     ports:
       - 30002:30002
 
   mongo3:
     image: mongo:5
     container_name: mongo3
-    command: ["--replSet", "my-replica-set", "--bind_ip_all", "--port", "30003"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        # "--keyFile", # uncomment this line
+      # "/data/key", # uncomment this line
+        "--replSet",
+        "my-replica-set",
+        "--bind_ip_all",
+        "--port",
+        "30003"
+      ]
     volumes:
-      - ./data/mongo-3:/data/db
+      - ./data/key:/data/key
     ports:
       - 30003:30003
